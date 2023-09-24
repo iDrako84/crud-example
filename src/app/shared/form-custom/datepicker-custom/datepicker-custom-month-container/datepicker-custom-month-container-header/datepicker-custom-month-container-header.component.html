@@ -1,0 +1,10 @@
+<div class="flex w-full mb-2">
+    <div class="w-full">
+        <button type="button" class="border-2 border-color-input-field px-2 h-[30px]" (click)="onSetYears($event)">{{ _datepickerCustomService.getYear$() | async }}</button>
+    </div>
+    <div class="w-full text-right">
+        <select [(ngModel)]="month" class="bg-transparent border-2 border-color-input-field h-[30px]" (click)="$event.stopPropagation()" (ngModelChange)="onChangeMonth()">>
+            <option *ngFor="let item of (_datepickerCustomService.getMonths$() | async); let i = index" [value]="i">{{ item }}</option>
+        </select>
+    </div>
+</div>

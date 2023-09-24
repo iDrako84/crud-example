@@ -1,0 +1,28 @@
+<div class="flex">
+    <div class="flex items-center my-2">
+        <button type="button" class="bg-transparent hover:bg-color-input-field hover:text-white border-2 border-color-input-field h-[30px]" (click)="setArrYears($event, 0)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>                              
+        </button>
+    </div>
+    <div>
+        <div class="flex flex-wrap">
+            <div class="w-1/3 my-2 text-center" *ngFor="let item of (_datepickerCustomService.getYears$() | async)">
+                <button 
+                    type="button" 
+                    class="bg-transparent hover:bg-color-input-field hover:text-white border-2 border-color-input-field px-2 h-[30px]"
+                    [ngClass]="{'!bg-color-input-field': item === (_datepickerCustomService.getYear$() | async), '!text-white': item === (_datepickerCustomService.getYear$() | async)}"
+                    (click)="onSetYear($event, item)"
+                >{{ item }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center my-2">
+        <button type="button" class="bg-transparent hover:bg-color-input-field hover:text-white border-2 border-color-input-field h-[30px]" (click)="setArrYears($event, 1)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>                              
+        </button>
+    </div>
+</div>

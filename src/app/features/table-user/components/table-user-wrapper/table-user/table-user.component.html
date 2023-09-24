@@ -1,0 +1,37 @@
+<ng-container *ngIf="(tableData$ | async) as tableData">
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-400">
+            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        User
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Admin
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b bg-gray-800 border-gray-700" *ngFor="let item of tableData">
+                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                        {{ item.user }}
+                    </th>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                        {{ item.email }}
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                        {{ item.admin ? 'YES' : 'NO' }}
+                    </td>
+                </tr>
+                <tr class="border-b bg-gray-800 border-gray-700" *ngIf="tableData.length === 0">
+                    <th scope="row" colspan="3" class="px-6 py-4 font-medium whitespace-nowrap text-white text-center">
+                        No data
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>

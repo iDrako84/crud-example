@@ -1,0 +1,18 @@
+<div class="flex mb-2">
+    <div class="w-full text-center mx-1" *ngFor="let week of (_datepickerCustomService.getWeeks$() | async)">
+        {{ week }}
+    </div>
+</div>
+<ng-container *ngIf="(_datepickerCustomService.getDatepickerData$() | async) as datepickerData">
+    <div class="flex mb-2" *ngFor="let week of datepickerData">
+        <div class="w-full text-center mx-1" *ngFor="let dayItem of week">
+            <button 
+                type="button" 
+                class="bg-gray-400 text-white rounded-full w-[35px] h-[35px] block hover:bg-color-input-field mx-auto"
+                [ngClass]="{'opacity-30': dayItem.month !== (_datepickerCustomService.getMonth$() | async), '!bg-color-input-field': controlSelectedDay(dayItem)}"
+                (click)="setDate($event, dayItem)">
+                {{ dayItem.day }}
+            </button>
+        </div>
+    </div>
+</ng-container>
