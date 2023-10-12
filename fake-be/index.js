@@ -1,0 +1,77 @@
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+
+const PORT = 5000;
+const app = express();
+
+const USER = require('./user.js');
+const TABLE = require('./table.js');
+
+app.use(cors());
+app.use(morgan('tiny'));
+app.use(express.json());
+
+app.post('/api/auth', (req, res) => {
+    /* console.log(req.body);
+    console.log(USER.userControlForm(req.body)); */
+    const control = USER.userControlForm(req.body);
+    if (control === true) {
+        USER.setUser({
+            "user": "Mario Rossi",
+            "email": req.body.email,
+            "token": "123456",
+            "admin": true
+        });
+        res.send(
+            {
+                "data": USER.getUser()
+            }
+        );
+    } else {     
+        res.status(control.status).send({
+            message: control.message
+        });
+    }
+});
+
+app.get('/api/logout', (req, res) => {
+    /* console.log(req.body);
+    console.log(USER.userControlForm(req.body)); */
+    USER.removeUser();
+    res.send(
+        {
+            "data": true
+        }
+    );
+});
+
+app.get('/api/table-data', (req, res) => {
+    /* console.log(req.body);
+    console.log(USER.userControlForm(req.body)); */
+    const table = TABLE.getDataTable();
+    res.send(
+        {
+            "data": table
+        }
+    );
+});
+
+app.post('/api/add-user', (req, res) => {
+    /* console.log(req.body);
+    console.log(USER.userControlForm(req.body)); */
+    const control = TABLE.setUser(req.body);
+    if (control === true) {
+        res.send(
+            {
+                "data": TABLE.getDataTable()
+            }
+        );
+    } else {     
+        res.status(control.status).send({
+            message: control.message
+        });
+    }
+});
+
+app.listen(PORT, () => console.log(`Il server é attivo sulla porta ${PORT}`));

@@ -18,13 +18,13 @@ import { setCredentials } from './core/store/login-wrapper.actions';
 export class AppComponent implements OnInit {
 
   constructor(
-    private _localSorageService: LocalSorageService,
+    /* private _localSorageService: LocalSorageService, */
     private readonly _store: Store<{credentials: ILoginData}>
   ) { }
 
   ngOnInit(): void {
     this._store.select('credentials').subscribe((user) => console.log(user));
-    const user: ILoginData | null = this._localSorageService.USER.getUser();
-    if (user) this._store.dispatch(setCredentials(user));
+    /* const user: ILoginData | null = this._localSorageService.USER.getUser();
+    if (user) this._store.dispatch(setCredentials(user)); */
   }
 }

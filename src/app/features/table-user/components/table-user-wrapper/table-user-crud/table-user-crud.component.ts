@@ -28,8 +28,8 @@ export class TableUserCrudComponent {
         private _tableWrapperService: TableWrapperService
     ) { 
         this.userForm = new FormGroup({
-            user: new FormControl<string | null>(null, [Validators.required]),
-            email: new FormControl<string | null>(null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+            user: new FormControl<string | null>(null, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i), Validators.min(2), Validators.max(24)]),
+            email: new FormControl<string | null>(null, [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/), Validators.min(5), Validators.max(24)]),
             admin: new FormControl<boolean>(false, { nonNullable: true }),
         });
     }

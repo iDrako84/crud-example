@@ -8,6 +8,7 @@
 
 # Node
 /node_modules
+/fake-be/node_modules
 npm-debug.log
 yarn-error.log
 

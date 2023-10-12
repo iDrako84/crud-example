@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { LoginService } from "../../utils/services/login.service";
 import { LocalSorageService } from "@core/services/local-storage.service";
 // MODELS
-import { LoginModel } from "../../utils/classes/login.model";
+import { LoginDataSend, LoginModel } from "../../utils/classes/login.model";
 // ACTIONS
 import { setCredentials } from "@core/store/login-wrapper.actions";
 // INTERFACES
@@ -37,13 +37,18 @@ export class LoginWrapperComponent {
         private _loginService: LoginService,
         private _router: Router,
         private readonly _store: Store,
-        private _localSorageService: LocalSorageService
+        /* private _localSorageService: LocalSorageService */
     ) {
         this.loginForm = this._loginService.getLoginForm();
     }
 
     public onSubmit(): void {
-        this._loginService.login()
+        const value = this.loginForm.value;
+        const dataSend: LoginDataSend = {
+            email: value.email as string,
+            password: value.password as string,
+        };
+        this._loginService.login(dataSend)
             .subscribe({
                 next: (user: ILoginData) => this.goTableUser(user),
                 error: (err) => console.error(err)
@@ -52,7 +57,7 @@ export class LoginWrapperComponent {
 
     private goTableUser(user: ILoginData): void {
         this._store.dispatch(setCredentials(user));
-        this._localSorageService.USER.setUser(user);
+        /* this._localSorageService.USER.setUser(user); */
         this._router.navigate(['/table-user']);
     }
 }
