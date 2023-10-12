@@ -23,13 +23,13 @@ app.post('/api/auth', (req, res) => {
             "token": "123456",
             "admin": true
         });
-        res.send(
+        res.json(
             {
                 "data": USER.getUser()
             }
         );
     } else {     
-        res.status(control.status).send({
+        res.status(control.status).json({
             message: control.message
         });
     }
@@ -39,7 +39,7 @@ app.get('/api/logout', (req, res) => {
     /* console.log(req.body);
     console.log(USER.userControlForm(req.body)); */
     USER.removeUser();
-    res.send(
+    res.json(
         {
             "data": true
         }
@@ -50,7 +50,7 @@ app.get('/api/table-data', (req, res) => {
     /* console.log(req.body);
     console.log(USER.userControlForm(req.body)); */
     const table = TABLE.getDataTable();
-    res.send(
+    res.json(
         {
             "data": table
         }
@@ -62,13 +62,13 @@ app.post('/api/add-user', (req, res) => {
     console.log(USER.userControlForm(req.body)); */
     const control = TABLE.setUser(req.body);
     if (control === true) {
-        res.send(
+        res.json(
             {
                 "data": TABLE.getDataTable()
             }
         );
     } else {     
-        res.status(control.status).send({
+        res.status(control.status).json({
             message: control.message
         });
     }
