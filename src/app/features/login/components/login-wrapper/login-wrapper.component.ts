@@ -15,13 +15,15 @@ import { ILoginData } from "@core/interface/user";
 import { EnterLogin } from "@shared/animations/bounce.animation";
 import { InputCustomComponent } from "@app/shared/form-custom/input-custom/input-custom.component";
 import { ButtonPrimaryDirective } from "@app/shared/directive-custom/button-custom/button-primary.directive";
+import { SpinnerLoaderComponent } from "@app/shared/spinner-loader/spinner-loader.component";
 
 @Component({
     standalone: true,
     imports: [
         ReactiveFormsModule,
         InputCustomComponent,
-        ButtonPrimaryDirective
+        ButtonPrimaryDirective,
+        SpinnerLoaderComponent
     ],
     selector: 'app-login-wrapper',
     templateUrl: './login-wrapper.component.html',

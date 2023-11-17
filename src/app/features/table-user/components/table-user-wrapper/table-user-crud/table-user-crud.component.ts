@@ -5,6 +5,7 @@ import { TableWrapperService } from '../../../utils/services/table-wrapper.servi
 import { InputCustomComponent } from '@app/shared/form-custom/input-custom/input-custom.component';
 import { SelectCustomComponent } from '@app/shared/form-custom/select-custom/select-custom.component';
 import { ButtonPrimaryDirective } from '@app/shared/directive-custom/button-custom/button-primary.directive';
+import { SpinnerLoaderComponent } from '@app/shared/spinner-loader/spinner-loader.component';
 
 @Component({
     standalone: true,
@@ -13,7 +14,8 @@ import { ButtonPrimaryDirective } from '@app/shared/directive-custom/button-cust
         ReactiveFormsModule,
         InputCustomComponent,
         SelectCustomComponent,
-        ButtonPrimaryDirective
+        ButtonPrimaryDirective,
+        SpinnerLoaderComponent
     ],
     selector: 'app-table-user-crud',
     templateUrl: './table-user-crud.component.html',

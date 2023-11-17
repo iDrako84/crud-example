@@ -1,27 +1,31 @@
 <div class="flex w-full h-screen bg-gray-300">
-    <div class="w-72 p-3 mt-4 mb-auto mx-auto md:m-auto border border-slate-400 rounded-md shadow-md bg-white" @enterLogin>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="flex flex-col">
-                <div class="w-full mb-5">
-                    <h2>Login</h2>
+    @defer (on immediate) {
+        <div class="w-72 p-3 mt-4 mb-auto mx-auto md:m-auto border border-slate-400 rounded-md shadow-md bg-white" @enterLogin>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="flex flex-col">
+                    <div class="w-full mb-5">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="w-full mb-5">
+                        <app-input-custom
+                            [control]="loginForm.get('email')"
+                            [idInput]="'email'"
+                            [placeholder]="'Email'" />
+                    </div>
+                    <div class="w-full mb-5">
+                        <app-input-custom
+                            [control]="loginForm.get('password')"
+                            [idInput]="'password'"
+                            [type]="'password'"
+                            [placeholder]="'Password'" />
+                    </div>
+                    <div class="w-full mb-5 text-right">
+                        <button type="submit" appButtonPrimary [disabled]="loginForm.invalid">Entra</button>
+                    </div>
                 </div>
-                <div class="w-full mb-5">
-                    <app-input-custom
-                        [control]="loginForm.get('email')"
-                        [idInput]="'email'"
-                        [placeholder]="'Email'"></app-input-custom>
-                </div>
-                <div class="w-full mb-5">
-                    <app-input-custom
-                        [control]="loginForm.get('password')"
-                        [idInput]="'password'"
-                        [type]="'password'"
-                        [placeholder]="'Password'"></app-input-custom>
-                </div>
-                <div class="w-full mb-5 text-right">
-                    <button type="submit" appButtonPrimary [disabled]="loginForm.invalid">Entra</button>
-                </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    } @loading {
+        <app-spinner-loader class="m-auto" />
+    }
 </div>

@@ -5,6 +5,7 @@ import { TableUserComponent } from "./table-user/table-user.component";
 import { AccordionModule } from "@app/shared/accordion/accordion.module";
 import { TableDataStore } from "../../store/table-data.store";
 import { TableWrapperService } from "../../utils/services/table-wrapper.service";
+import { SpinnerLoaderComponent } from "@app/shared/spinner-loader/spinner-loader.component";
 
 @Component({
     standalone: true,
@@ -12,7 +13,8 @@ import { TableWrapperService } from "../../utils/services/table-wrapper.service"
         TableUserHeaderComponent,
         TableUserCrudComponent,
         TableUserComponent,
-        AccordionModule
+        AccordionModule,
+        SpinnerLoaderComponent
     ],
     selector: 'app-table-user-wrapper',
     templateUrl: './table-user-wrapper.component.html',
