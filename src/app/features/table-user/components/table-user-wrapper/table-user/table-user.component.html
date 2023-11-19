@@ -15,22 +15,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b bg-gray-800 border-gray-700" *ngFor="let item of tableData">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                        {{ item.user }}
-                    </th>
-                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                        {{ item.email }}
-                    </td>
-                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                        {{ item.admin ? 'YES' : 'NO' }}
-                    </td>
-                </tr>
-                <tr class="border-b bg-gray-800 border-gray-700" *ngIf="tableData.length === 0">
-                    <th scope="row" colspan="3" class="px-6 py-4 font-medium whitespace-nowrap text-white text-center">
-                        No data
-                    </th>
-                </tr>
+                @for(item of tableData; track item.email) {
+                    <tr class="border-b bg-gray-800 border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                            {{ item.user }}
+                        </th>
+                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                            {{ item.email }}
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                            {{ item.admin ? 'YES' : 'NO' }}
+                        </td>
+                    </tr>
+                } @empty {
+                    <tr class="border-b bg-gray-800 border-gray-700">
+                        <th scope="row" colspan="3" class="px-6 py-4 font-medium whitespace-nowrap text-white text-center">
+                            No data
+                        </th>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
