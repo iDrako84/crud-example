@@ -1,32 +1,42 @@
-<div class="relative" *ngIf="control" [ngClass]="{'pointer-events-none': readOnly}">
-    <input 
-        #input
-        type="text" 
-        [attr.id]="idDatepicker"
-        class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-color-input-field peer disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed"
-        [ngClass]="getErrorInput()"
-        placeholder=" "
-        [disabled]="control.disabled"
-        [ngModel]="_datepickerCustomService.getValueInputEl() | async"
-        [readOnly]="readOnly"
-        (blur)="onBlur()"
-        (click)="toggle($event)"
-        (input)="setInput($event)">
-    <label 
-        [attr.for]="idDatepicker" 
-        *ngIf="placeholder"
-        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-color-input-field peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 peer-disabled:bg-transparent peer-disabled:cursor-not-allowed"
-        [ngClass]="getErrorLabel()">
-        {{ placeholder }} <span class="text-red-600" *ngIf="validatorRequired">*</span>
-    </label>
-</div>
+@if (control) {
+    <div class="relative" [ngClass]="{'pointer-events-none': readOnly}">
+        <input 
+            #input
+            type="text" 
+            [attr.id]="idDatepicker"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-color-custom peer disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed"
+            [ngClass]="getErrorInput()"
+            placeholder=" "
+            [disabled]="control.disabled"
+            [ngModel]="_datepickerCustomService.getValueInputEl() | async"
+            [readOnly]="readOnly"
+            (blur)="onBlur()"
+            (click)="toggle($event)"
+            (input)="setInput($event)">
+        @if (placeholder) {
+            <label 
+                [attr.for]="idDatepicker" 
+                class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-color-custom peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 peer-disabled:bg-transparent peer-disabled:cursor-not-allowed"
+                [ngClass]="getErrorLabel()">
+                {{ placeholder }}
+                @if (validatorRequired) {
+                    <span class="text-red-600"> *</span>
+                }
+            </label>
+        }
+    </div>
+}
     
 <ng-template #datepicker>
     <div class="fixed overflow-auto top-0 left-0 w-full h-screen z-50" select-datepicker-custom (click)="toggle($event)">
         <div class="absolute w-[320px] max-h-36 transition-all duration-75 z-50" [attr.select-datepicker-custom-item]="_datepickerCustomService.idContainer" (click)="$event.stopPropagation()">
-            <div class="w-full p-2 border-t-2 border-x-2 border-x-color-input-field border-t-color-input-field bg-white border-b-2 border-b-color-input-field rounded-t-md rounded-b-md">
-                <app-datepicker-custom-month-container *ngIf="(_datepickerCustomService.getMode$() | async) === 'month'"></app-datepicker-custom-month-container>
-                <app-datepicker-custom-year-container *ngIf="(_datepickerCustomService.getMode$() | async) === 'year'"></app-datepicker-custom-year-container>
+            <div class="w-full p-2 border-t-2 border-x-2 border-x-color-custom border-t-color-custom bg-white border-b-2 border-b-color-custom rounded-t-md rounded-b-md">
+                @if ((_datepickerCustomService.getMode$() | async) === 'month') {
+                    <app-datepicker-custom-month-container></app-datepicker-custom-month-container>
+                }
+                @if ((_datepickerCustomService.getMode$() | async) === 'year') {
+                    <app-datepicker-custom-year-container></app-datepicker-custom-year-container>
+                }
             </div>
         </div>
     </div>

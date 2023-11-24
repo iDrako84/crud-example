@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } fro
 // SERVICE
 import { DropdownService } from "./dropdown.service";
 // RXJS
-import { BehaviorSubject, Subscription, forkJoin, take } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Directive({
     selector: '[appDropdownContainer]'

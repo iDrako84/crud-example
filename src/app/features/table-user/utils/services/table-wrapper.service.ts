@@ -15,13 +15,14 @@ import { TableDataStore } from "../../store/table-data.store";
 
 import { environment } from "environments/environment";
 import { map } from "rxjs";
+import { Patterns } from "@app/shared/utils/patterns";
 
 @Injectable()
 export class TableWrapperService {
 
     constructor(
         private readonly _store: Store<{ credentials: ILoginData }>,
-        /* private _localStorageService: LocalSorageService, */
+        private _localStorageService: LocalSorageService,
         private _router: Router,
         private _tableDataStore: TableDataStore,
         private _http: HttpClient
@@ -36,7 +37,7 @@ export class TableWrapperService {
                 next: (res) => {
                     if (res) {
                         this._store.dispatch(resetCredentials());
-                        /* this._localStorageService.USER.removeUser(); */
+                        this._localStorageService.USER.removeUser();
                         this._router.navigate(['/login']);
                     }
                 },
@@ -66,5 +67,13 @@ export class TableWrapperService {
                 next: (tableData) => this._tableDataStore.setTableData(tableData),
                 error: () => {},
             });
+    }
+
+    public getTableUserCrud(): FormGroup {
+        return new FormGroup({
+            user: new FormControl<string | null>('', [Validators.required, Validators.pattern(Patterns.user), Validators.min(2), Validators.max(24)]),
+            email: new FormControl<string | null>(null, [Validators.required, Validators.pattern(Patterns.email), Validators.min(5), Validators.max(24)]),
+            admin: new FormControl<boolean>(false, { nonNullable: true }),
+        });
     }
 }

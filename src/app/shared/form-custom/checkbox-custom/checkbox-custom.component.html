@@ -4,7 +4,7 @@
         [attr.for]="idCheckbox">
         <input
             type="checkbox"
-            class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-color-input-field checked:bg-color-input-field checked:before:bg-color-input-field disabled:bg-color-input-field disabled:opacity-60 disabled:cursor-not-allowed"
+            class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-color-custom checked:bg-color-custom checked:before:bg-color-custom disabled:bg-color-custom disabled:opacity-60 disabled:cursor-not-allowed"
             [attr.id]="idCheckbox"
             [formControl]="asControl"
             [readOnly]="readOnly"
@@ -24,11 +24,12 @@
             </svg>
         </div>
     </label>
-    <label
-        *ngIf="placeholder"
-        class="mt-px cursor-pointer select-none"
-        [ngClass]="{'opacity-60': asControl.disabled, 'cursor-not-allowed': asControl.disabled}"
-        [attr.for]="idCheckbox">
-        {{ placeholder }}
-    </label>
+    @if (placeholder) {
+        <label
+            class="mt-px cursor-pointer select-none"
+            [ngClass]="{'opacity-60': asControl.disabled, 'cursor-not-allowed': asControl.disabled}"
+            [attr.for]="idCheckbox">
+            {{ placeholder }}
+        </label>
+    }
 </div>

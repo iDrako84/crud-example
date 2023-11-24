@@ -1,0 +1,35 @@
+.button-custom {
+    @apply relative outline-0 overflow-hidden inline-block px-2 py-1 rounded text-center text-lg border-2 enabled:hover:shadow enabled:focus:shadow disabled:cursor-not-allowed transition-shadow duration-200 disabled:opacity-60;
+}
+.button-custom-primary {
+    @apply text-white bg-color-custom border-color-custom enabled:hover:shadow-color-custom enabled:focus:shadow-color-custom;
+}
+.button-custom-warning {
+    @apply text-white bg-yellow-600 border-yellow-600 enabled:hover:shadow-yellow-600 enabled:focus:shadow-yellow-600;
+}
+.button-custom-danger {
+    @apply text-white bg-red-600 border-red-600 enabled:hover:shadow-red-600 enabled:focus:shadow-red-600;
+}
+.button-custom-info {
+    @apply text-white bg-blue-400 border-blue-400 enabled:hover:shadow-blue-400 enabled:focus:shadow-blue-400;
+}
+.button-custom-link {
+    @apply text-black bg-transparent border-transparent enabled:hover:shadow-white enabled:focus:shadow-white underline;
+}
+.button-custom-transparent {
+    @apply text-black bg-transparent border-transparent enabled:hover:shadow-white enabled:focus:shadow-white;
+}
+
+@-webkit-keyframes ripple {
+    to {
+        -webkit-transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}

@@ -4,8 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TableWrapperService } from '../../../utils/services/table-wrapper.service';
 import { InputCustomComponent } from '@app/shared/form-custom/input-custom/input-custom.component';
 import { SelectCustomComponent } from '@app/shared/form-custom/select-custom/select-custom.component';
-import { ButtonPrimaryDirective } from '@app/shared/directive-custom/button-custom/button-primary.directive';
 import { SpinnerLoaderComponent } from '@app/shared/spinner-loader/spinner-loader.component';
+import { ButtonCustomDirective } from '@app/shared/directives/button-custom.directive';
 
 @Component({
     standalone: true,
@@ -14,8 +14,8 @@ import { SpinnerLoaderComponent } from '@app/shared/spinner-loader/spinner-loade
         ReactiveFormsModule,
         InputCustomComponent,
         SelectCustomComponent,
-        ButtonPrimaryDirective,
-        SpinnerLoaderComponent
+        SpinnerLoaderComponent,
+        ButtonCustomDirective
     ],
     selector: 'app-table-user-crud',
     templateUrl: './table-user-crud.component.html',
@@ -29,11 +29,7 @@ export class TableUserCrudComponent {
     constructor(
         private _tableWrapperService: TableWrapperService
     ) { 
-        this.userForm = new FormGroup({
-            user: new FormControl<string | null>(null, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i), Validators.min(2), Validators.max(24)]),
-            email: new FormControl<string | null>(null, [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/), Validators.min(5), Validators.max(24)]),
-            admin: new FormControl<boolean>(false, { nonNullable: true }),
-        });
+        this.userForm = this._tableWrapperService.getTableUserCrud();
     }
 
     public onSubmit(): void {

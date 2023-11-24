@@ -1,5 +1,5 @@
-<ng-container *ngIf="(tableData$ | async) as tableData">
-    <div class="relative overflow-x-auto">
+@if (tableData$ | async; as tableData) {
+    <div class="relative overflow-x-auto" scrollbar-custom>
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
@@ -37,4 +37,4 @@
             </tbody>
         </table>
     </div>
-</ng-container>
+}

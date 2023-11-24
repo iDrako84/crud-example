@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AbstractControl, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MakeIdService } from '../../services/make-id.service';
-import { NgClass } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
-    NgClass,
+    CommonModule,
     ReactiveFormsModule
   ],
   selector: 'app-input-custom',

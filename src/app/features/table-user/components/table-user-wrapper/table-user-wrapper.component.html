@@ -3,22 +3,24 @@
         <div class="w-full mb-3">
             <app-table-user-header />
         </div>
-        <div class="w-full px-2 mb-3">
-            <div app-accordion-container>
-                <div app-accordion-item>
-                    <button type="button" appAccordionToggle class="bg-gray-700 text-white">
-                        Insert user
-                    </button>
-                    <div app-accordion-collapse>
-                        <ng-template appAccordionBody>
-                            <app-table-user-crud />
-                        </ng-template>
+        <div class="flex flex-col 2xl:flex-row">
+            <div class="w-full 2xl:w-2/4 px-2 mb-3">
+                <div app-accordion-container>
+                    <div app-accordion-item>
+                        <button type="button" appAccordionToggle class="bg-color-custom text-white">
+                            Insert user
+                        </button>
+                        <div app-accordion-collapse>
+                            <ng-template appAccordionBody>
+                                <app-table-user-crud />
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="w-full px-2 mb-3">
-            <app-table-user />
+            <div class="w-full 2xl:w-2/4 px-2 mb-3">
+                <app-table-user />
+            </div>
         </div>
     </div>
 } @loading {

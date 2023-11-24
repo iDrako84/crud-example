@@ -3,16 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@-webkit-keyframes ripple {
-    to {
-        -webkit-transform: scale(2.5);
-        opacity: 0;
-    }
-}
+@import './sass/button-custom.scss';
 
-@keyframes ripple {
-    to {
-        transform: scale(2.5);
-        opacity: 0;
+.scrollbar-custom {
+    &::-webkit-scrollbar {
+        @apply w-2;
+        /* width: 4px; */
+    }
+    
+    &::-webkit-scrollbar-track {
+        @apply bg-slate-300;
+        /* background: orange; */
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        @apply rounded-3xl border-4 border-solid border-slate-300 bg-color-custom;
+        /* background-color: blue; */
+        /* border-radius: 20px; */
+        /* border: 3px solid orange; */
     }
 }

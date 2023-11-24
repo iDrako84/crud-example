@@ -1,14 +1,12 @@
 import { Component, ElementRef, HostListener, Input, Renderer2, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MakeIdService } from '../../services/make-id.service';
-import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
-    NgClass,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -19,6 +17,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 export class SelectCustomComponent {
   @ViewChild('list', { static: false }) private listEl!: TemplateRef<any>;
   @ViewChild('input', { static: false }) private inputEl!: ElementRef<HTMLInputElement>;
+  @ViewChild('inputSearch', { static: false }) private inputSearchEl!: ElementRef<HTMLInputElement>;
   @Input() control: AbstractControl<any, any> | null;
   @Input() placeholder: string;
   @Input() idSelect: string;
@@ -52,21 +51,18 @@ export class SelectCustomComponent {
 
   @HostListener('document:click', ['$event']) private clickout(event: any): void {
     if (!this._elementRef.nativeElement.contains(event?.target)) {
-      const child = document.querySelectorAll(`[select-list-custom]`);
-      if (child.length) {
-        for (const item of Array.from(child)) {
-          document.body.removeChild(item);
-        }
-      }
+      this.close();
     }
   }
 
   @HostListener('document:scroll', ['$event']) private scrollDocument(event: any): void {
-    this.repositionList();
+    /* this.repositionList(); */
+    this.close();
   }
 
   @HostListener('window:resize', ['$event']) private resizeDocument(event: any): void {
-    this.repositionList();
+    /* this.repositionList(); */
+    this.close();
   }
 
   protected get getOptions(): { [key: string]: any }[] {
@@ -140,13 +136,16 @@ export class SelectCustomComponent {
         this._renderer.setStyle(ell, 'min-width', `${position.width}px`);
         document.body.appendChild(node);
       }
+      setTimeout(() => {
+        this.inputSearchEl?.nativeElement?.focus();
+      });
     }
   }
 
-  protected setClassLabel(): { '!px-2': boolean, '!text-color-input-field': boolean, '!scale-100': boolean, '!-translate-y-1/2': boolean, '!top-1/2': boolean, '!text-red-600': boolean } {
+  protected setClassLabel(): { '!px-2': boolean, '!text-color-custom': boolean, '!scale-100': boolean, '!-translate-y-1/2': boolean, '!top-1/2': boolean, '!text-red-600': boolean } {
     return {
       '!px-2': this.control?.value === undefined || this.control?.value === null,
-      '!text-color-input-field': this.control?.value !== undefined && this.control?.value !== null,
+      '!text-color-custom': this.control?.value !== undefined && this.control?.value !== null,
       '!scale-100': this.control?.value === undefined || this.control?.value === null,
       '!-translate-y-1/2': this.control?.value === undefined || this.control?.value === null,
       '!top-1/2': this.control?.value === undefined || this.control?.value === null,
@@ -154,10 +153,10 @@ export class SelectCustomComponent {
     };
   }
 
-  protected setClassLi(f: boolean, l: boolean): { 'border-b-2': boolean, 'border-b-color-input-field': boolean, 'rounded-t-md': boolean, 'rounded-b-md': boolean } {
+  protected setClassLi(f: boolean, l: boolean): { 'border-b-2': boolean, 'border-b-color-custom': boolean, 'rounded-t-md': boolean, 'rounded-b-md': boolean } {
     return {
       'border-b-2': l,
-      'border-b-color-input-field': l,
+      'border-b-color-custom': l,
       'rounded-t-md': f && !this.enableSearch,
       'rounded-b-md': l
     };
@@ -169,7 +168,13 @@ export class SelectCustomComponent {
     };
   }
 
-  private repositionList(): void {
+  protected getContainerSearch(): { '!bg-color-custom': boolean } {
+    return {
+      '!bg-color-custom': this.inputSearchEl?.nativeElement === document.activeElement
+    };
+  }
+
+  /* private repositionList(): void {
     const childs = document.querySelectorAll('[select-list-custom]');
     const child = document.querySelector(`[select-list-custom-item="${this.idContainer}"]`);
     const listPosition = child?.getBoundingClientRect();
@@ -185,6 +190,15 @@ export class SelectCustomComponent {
       this._renderer.setStyle(child, 'min-width', `${inputElPosition.width}px`);
     } else {
       for (const item of Array.from(childs)) {
+        document.body.removeChild(item);
+      }
+    }
+  } */
+
+  private close(): void {
+    const child = document.querySelectorAll('[select-list-custom]');
+    if (child.length) {
+      for (const item of Array.from(child)) {
         document.body.removeChild(item);
       }
     }

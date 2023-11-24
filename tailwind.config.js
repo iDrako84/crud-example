@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { blue as _blue } from 'tailwindcss/colors';
 import { slate as _slate } from 'tailwindcss/colors';
 
 export const content = [
@@ -7,7 +8,7 @@ export const content = [
 export const theme = {
   extend: {
     colors: {
-      "color-input-field": _slate[600],
+      "color-custom": _slate[600],
     }
   },
 };

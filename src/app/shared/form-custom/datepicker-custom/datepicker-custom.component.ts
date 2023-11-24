@@ -89,10 +89,10 @@ export class DatepickerCustomComponent implements OnInit, AfterViewInit, OnDestr
     this._datepickerCustomService.toggle();
   }
 
-  protected setClassLabel(): { '!px-2': boolean, '!text-color-input-field': boolean, '!scale-100': boolean, '!-translate-y-1/2': boolean, '!top-1/2': boolean, '!text-red-600': boolean } {
+  protected setClassLabel(): { '!px-2': boolean, '!text-color-custom': boolean, '!scale-100': boolean, '!-translate-y-1/2': boolean, '!top-1/2': boolean, '!text-red-600': boolean } {
     return {
       '!px-2': !this.control?.value,
-      '!text-color-input-field': this.control?.value,
+      '!text-color-custom': this.control?.value,
       '!scale-100': !this.control?.value,
       '!-translate-y-1/2': !this.control?.value,
       '!top-1/2': !this.control?.value,

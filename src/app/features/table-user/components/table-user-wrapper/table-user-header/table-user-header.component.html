@@ -1,24 +1,26 @@
-<nav class="bg-gray-300 border-gray-200" *ngIf="(credentials$ | async) as credentials">
-    <div class="flex flex-wrap justify-between items-center mx-auto p-4">
-        <span class="self-center text-base font-semibold whitespace-nowrap">Welcome {{ credentials.user }}</span>
-        <div class="flex items-center" appDropdown>
-            <a role="button" class="text-sm select-none border-b-[1px] border-b-transparent hover:border-b-black transition-colors duration-150" appDropdownToggle>
-              {{ credentials.email }} 
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2 inline">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>              
-            </a>
-            <div class="bg-white divide-y rounded-lg shadow min-w-max max-w-lg" appDropdownContainer>
-                <ul class="py-2 text-sm text-gray-700">
-                  <li class="text-right block px-4 py-2">
-                    {{ credentials.user }}
-                  </li>
-                  <li class="border border-gray-300 my-1"></li>
-                  <li class="text-right">
-                    <a role="button" class="block px-4 py-2 hover:bg-gray-100" (click)="logout()">Esci</a>
-                  </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
+@if (credentials$ | async; as credentials) {
+  <nav class="bg-color-custom text-white">
+      <div class="flex flex-wrap justify-between items-center mx-auto p-4">
+          <span class="self-center text-base font-semibold whitespace-nowrap">Welcome {{ credentials.user }}</span>
+          <div class="flex items-center" appDropdown>
+              <a role="button" class="text-sm select-none border-b-[1px] border-b-transparent hover:border-b-white transition-colors duration-150" appDropdownToggle>
+                {{ credentials.email }} 
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2 inline">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>              
+              </a>
+              <div class="bg-white divide-y rounded-lg shadow min-w-max max-w-lg" appDropdownContainer>
+                  <ul class="py-2 text-sm text-gray-700">
+                    <li class="text-right block px-4 py-2">
+                      {{ credentials.user }}
+                    </li>
+                    <li class="border border-gray-300 my-1"></li>
+                    <li class="text-right">
+                      <a role="button" class="block px-4 py-2 hover:bg-gray-100" (click)="logout()">Esci</a>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </nav>
+}

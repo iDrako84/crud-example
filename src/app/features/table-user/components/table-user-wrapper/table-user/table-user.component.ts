@@ -7,11 +7,13 @@ import { TableWrapperService } from "@app/features/table-user/utils/services/tab
 import { ITableData, ITableDataData } from "../../../utils/interfaces/table-data";
 // RXJS
 import { Observable, Subscription, map } from "rxjs";
+import { ScrollbarCustomDirective } from "@app/shared/directives/scrollbar-custom.directive";
 
 @Component({
     standalone: true,
     imports: [
-        CommonModule
+        CommonModule,
+        ScrollbarCustomDirective
     ],
     selector: 'app-table-user',
     templateUrl: './table-user.component.html',
