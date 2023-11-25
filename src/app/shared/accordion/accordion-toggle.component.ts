@@ -9,7 +9,6 @@ const classList: string[] = [
     'flex',
     'py-2',
     'px-1',
-    'bg-gray-300',
     'outline-0',
     'overflow-hidden',
     'inline-block',

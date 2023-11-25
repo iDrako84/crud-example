@@ -25,15 +25,17 @@ export class DropdownContainerDirective implements OnInit, OnDestroy {
     }
 
     @HostListener('document:scroll', ['$event']) private scrollDocument(event: any): void {
-        if (!this._elementRef.nativeElement.classList.contains('hidden')) {
+        /* if (!this._elementRef.nativeElement.classList.contains('hidden')) {
             this._dropdownService.setPositions(this._elementRef, this._renderer);
-        }
+        } */
+        this._renderer.addClass(this._elementRef.nativeElement, 'hidden');
     }
 
     @HostListener('window:resize', ['$event']) private resizeDocument(event: any): void {
-        if (!this._elementRef.nativeElement.classList.contains('hidden')) {
+        /* if (!this._elementRef.nativeElement.classList.contains('hidden')) {
             this._dropdownService.setPositions(this._elementRef, this._renderer);
-        }
+        } */
+        this._renderer.addClass(this._elementRef.nativeElement, 'hidden');
     }
 
     ngOnInit(): void {

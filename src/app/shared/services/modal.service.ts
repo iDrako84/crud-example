@@ -14,7 +14,7 @@ export class ModalService {
         private _makeIdService: MakeIdService
     ) { }
 
-    public open(component: Type<any>): { componentRef: ComponentRef<any>, close: Observable<any> } {
+    public open(component: Type<any>, options?:{data: any}): { componentRef: ComponentRef<any>, close: Observable<any> } {
         const componentContainerRef = this.componentFactoryResolver
             .resolveComponentFactory(ContainerModalComponent)
             .create(this.injector);
@@ -34,6 +34,10 @@ export class ModalService {
         domContainerElem.querySelector('.modal-content')?.append(domElem);
 
         document.body.appendChild(domContainerElem);
+
+        if (options?.data && componentRef.instance.data !== undefined) {
+            componentRef.instance.data = options.data;
+        }
 
         // setTimeout(() => {
         //     this.appRef.detachView(componentRef.hostView);
@@ -76,6 +80,6 @@ export class ModalService {
         const modal = this.stateModals[this.stateModals.length - 1];
         this.appRef.detachView(modal.componentRef.hostView);
         modal.componentRef.destroy();
-        modal.close.next(data || null)
+        modal.close.next(data || null);
     }
 }

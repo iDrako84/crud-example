@@ -1,7 +1,7 @@
 @if (tableData$ | async; as tableData) {
     <div class="relative overflow-x-auto" scrollbar-custom>
-        <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+        <table class="w-full text-sm text-left">
+            <thead class="text-xs uppercase bg-color-custom text-white">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         User
@@ -14,22 +14,22 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-black">
                 @for(item of tableData; track item.email) {
-                    <tr class="border-b bg-gray-800 border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                    <tr class="border-b border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             {{ item.user }}
                         </th>
-                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             {{ item.email }}
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             {{ item.admin ? 'YES' : 'NO' }}
                         </td>
                     </tr>
                 } @empty {
-                    <tr class="border-b bg-gray-800 border-gray-700">
-                        <th scope="row" colspan="3" class="px-6 py-4 font-medium whitespace-nowrap text-white text-center">
+                    <tr class="border-b border-gray-700">
+                        <th scope="row" colspan="3" class="px-6 py-4 font-medium whitespace-nowrap text-center">
                             No data
                         </th>
                     </tr>

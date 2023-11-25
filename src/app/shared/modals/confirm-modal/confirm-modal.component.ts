@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 // SERVICES
 import { ModalService } from "../../services/modal.service";
 import { ButtonCustomDirective } from "@app/shared/directives/button-custom.directive";
@@ -22,11 +22,12 @@ import { ButtonCustomDirective } from "@app/shared/directives/button-custom.dire
     </div>
     `
 })
-export class ConfirmModalComponent {
+export class ConfirmModalComponent implements OnInit {
 
     constructor(
         public _modalService: ModalService
-    ) {
-        console.log('ok')
+    ) { }
+
+    ngOnInit(): void {
     }
 }

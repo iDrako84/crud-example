@@ -36,7 +36,7 @@ export class TableUserHeaderComponent {
     }
 
     public logout(): void {
-        const modalRef = this._modalService.open(ConfirmModalComponent);
+        const modalRef = this._modalService.open(ConfirmModalComponent, {data: 'ok'});
         modalRef.close.subscribe((res: any) => {
             if (res) {
                 this._tableWrapperService.logout();
