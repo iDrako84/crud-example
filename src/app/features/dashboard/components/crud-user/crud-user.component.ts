@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-// SERVICES
-import { TableWrapperService } from '../../../utils/services/table-wrapper.service';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonCustomDirective } from '@app/shared/directives/button-custom.directive';
 import { InputCustomComponent } from '@app/shared/form-custom/input-custom/input-custom.component';
 import { SelectCustomComponent } from '@app/shared/form-custom/select-custom/select-custom.component';
 import { SpinnerLoaderComponent } from '@app/shared/spinner-loader/spinner-loader.component';
-import { ButtonCustomDirective } from '@app/shared/directives/button-custom.directive';
+import { TableWrapperService } from '../../utils/services/table-wrapper.service';
 
 @Component({
     standalone: true,
@@ -17,12 +16,12 @@ import { ButtonCustomDirective } from '@app/shared/directives/button-custom.dire
         SpinnerLoaderComponent,
         ButtonCustomDirective
     ],
-    selector: 'app-table-user-crud',
-    templateUrl: './table-user-crud.component.html',
-    styleUrls: ['./table-user-crud.component.scss']
+    selector: 'app-crud-user',
+    templateUrl: './crud-user.component.html',
+    styleUrls: ['./crud-user.component.scss']
 })
 
-export class TableUserCrudComponent {
+export class CrudUserComponent {
     public userForm: FormGroup;
     public optionsAdmin = [{value: true, label: 'YES'}, {value: false, label: 'NO'}];
     

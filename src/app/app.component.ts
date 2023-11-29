@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     const user: ILoginData | null = this._localSorageService.USER.getUser();
     if (user) {
       this._store.dispatch(setCredentials(user));
-      this._router.navigate(['/table-user'])
+      this._router.navigate(['/dashboard'])
     }
   }
 }

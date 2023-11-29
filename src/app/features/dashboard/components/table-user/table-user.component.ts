@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 // SERVICES
-import { TableDataStore } from "../../../store/table-data.store";
-import { TableWrapperService } from "@app/features/table-user/utils/services/table-wrapper.service";
+import { TableDataStore } from "../../store/table-data.store";
+import { TableWrapperService } from "../../utils/services/table-wrapper.service";
 // INTERFACES
-import { ITableData, ITableDataData } from "../../../utils/interfaces/table-data";
+import { ITableDataData } from "../../utils/interfaces/table-data";
 // RXJS
 import { Observable, Subscription, map } from "rxjs";
 import { ScrollbarCustomDirective } from "@app/shared/directives/scrollbar-custom.directive";

@@ -61,6 +61,6 @@ export class LoginWrapperComponent {
     private goTableUser(user: ILoginData): void {
         this._store.dispatch(setCredentials(user));
         this._localSorageService.USER.setUser(user);
-        this._router.navigate(['/table-user']);
+        this._router.navigate(['/dashboard']);
     }
 }

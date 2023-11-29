@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 import { AuthGuardLogin } from './core/auth/auth-guard.service';
 import { LoginService } from './features/login/utils/services/login.service';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { TableWrapperService } from './features/table-user/utils/services/table-wrapper.service';
 import { HttpInterceptorService } from './core/interceptor/http-interceptor';
+import { TableDataStore } from './features/dashboard/store/table-data.store';
+import { TableWrapperService } from './features/dashboard/utils/services/table-wrapper.service';
 
 const httpClient = provideHttpClient(
   withInterceptors([HttpInterceptorService])
@@ -24,11 +25,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'table-user',
-    loadComponent: () => import('./features/table-user/components/table-user-wrapper/table-user-wrapper.component').then(m => m.TableUserWrapperComponent),
-    canActivate: [AuthGuardLogin],
-    providers: [
-      httpClient
-    ]
+    path: 'dashboard',
+    loadChildren: () => import('./features/dashboard/dashboard.routes').then(r => r.routes),
+    canActivate: [AuthGuardLogin]
   }
 ];

@@ -1,5 +1,5 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div class="flex flex-wrap py-2 border-l border-b border-r border-color-custom rounded-b">
+    <div class="flex flex-wrap p-2">
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 2xl:w-1/3 mb-2 p-1">
             <app-input-custom 
                 [control]="userForm.get('user')"
