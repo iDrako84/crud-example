@@ -2,7 +2,7 @@
     <nav class="bg-color-custom text-white">
         <div class="flex flex-wrap justify-between items-center mx-auto p-4">
             <span class="self-center text-base font-semibold whitespace-nowrap">Welcome {{ credentials.user }}</span>
-            <div class="flex items-center" appDropdown>
+            <div class="flex items-center" appDropdown #drop="appDropdown">
                 <a role="button" class="text-sm select-none border-b-[1px] border-b-transparent hover:border-b-white transition-colors duration-150" appDropdownToggle>
                   {{ credentials.email }} 
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2 inline">
@@ -15,10 +15,10 @@
                         {{ credentials.user }}
                       </li>
                       <li class="text-right block px-0 py-2">
-                        <a role="button" class="block px-4 py-2 hover:bg-gray-100" routerLink="./table-user">Table user</a>
+                        <a role="button" class="block px-4 py-2 hover:bg-gray-100" routerLink="./table-user" (click)="drop.close()">Table user</a>
                       </li>
                       <li class="text-right block px-0 py-2">
-                        <a role="button" class="block px-4 py-2 hover:bg-gray-100" routerLink="./crud-user">Insert user</a>
+                        <a role="button" class="block px-4 py-2 hover:bg-gray-100" routerLink="./crud-user" (click)="drop.close()">Insert user</a>
                       </li>
                       <li class="border border-gray-300 my-1"></li>
                       <li class="text-right">

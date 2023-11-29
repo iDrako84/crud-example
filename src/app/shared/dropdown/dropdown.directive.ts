@@ -6,7 +6,8 @@ import { DropdownService } from "./dropdown.service";
     selector: '[appDropdown]',
     providers: [
         DropdownService
-    ]
+    ],
+    exportAs: 'appDropdown'
 })
 export class DropdownDirective implements OnInit {
     @Input() dropPosition: 'top' | 'bottom' | 'left' | 'right';
@@ -17,5 +18,13 @@ export class DropdownDirective implements OnInit {
 
     ngOnInit(): void {
         this._dropdownService.setDropPosition(this.dropPosition);
+    }
+
+    public open(): void {
+        this._dropdownService.open$.next();
+    }
+
+    public close(): void {
+        this._dropdownService.close$.next();
     }
 }

@@ -45,6 +45,17 @@ export class DropdownContainerDirective implements OnInit, OnDestroy {
         this.subs.add(
             this._dropdownService.getToggle().subscribe(() => this.showHiddenDropdown())
         );
+        this.subs.add(
+            this._dropdownService.open$.subscribe(() => {
+                this._renderer.removeClass(this._elementRef.nativeElement, 'hidden');
+                this._dropdownService.setPositions(this._elementRef, this._renderer);
+            })
+        );
+        this.subs.add(
+            this._dropdownService.close$.subscribe(() => {
+                this._renderer.addClass(this._elementRef.nativeElement, 'hidden');
+            })
+        );
     }
 
     private showHiddenDropdown(): void {
@@ -54,6 +65,10 @@ export class DropdownContainerDirective implements OnInit, OnDestroy {
         } else {
             this._renderer.addClass(this._elementRef.nativeElement, 'hidden');
         }
+    }
+
+    public toggle(): void {
+        this.showHiddenDropdown();
     }
 
     ngOnDestroy(): void {

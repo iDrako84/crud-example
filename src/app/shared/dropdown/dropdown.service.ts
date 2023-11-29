@@ -5,11 +5,15 @@ import { BehaviorSubject, Subject, forkJoin, take } from "rxjs";
 @Injectable()
 export class DropdownService {
     private toggle$: Subject<void>;
+    public open$: Subject<void>;
+    public close$: Subject<void>;
     private toggleEl$: BehaviorSubject<ElementRef<any> | null>;
     private dropPosition$: BehaviorSubject<'top' | 'bottom' | 'left' | 'right'>;
 
     constructor() {
         this.toggle$ = new Subject();
+        this.open$ = new Subject();
+        this.close$ = new Subject();
         this.toggleEl$ = new BehaviorSubject(null as ElementRef<any> | null);
         this.dropPosition$ = new BehaviorSubject('bottom' as 'top' | 'bottom' | 'left' | 'right');
     }
